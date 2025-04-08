@@ -1,7 +1,41 @@
 import random
 
+# Snowman ASCII Art stages
+STAGES = [
+     # Stage 0: Full snowman
+     """
+      ___  
+     /___\\ 
+     (o o) 
+     ( : ) 
+     ( : ) 
+     """,
+     # Stage 1: Bottom part starts melting
+     """
+      ___  
+     /___\\ 
+     (o o) 
+     ( : ) 
+     """,
+     # Stage 2: Only the head remains
+     """
+      ___  
+     /___\\ 
+     (o o) 
+     """,
+     # Stage 3: Snowman completely melted
+     """
+      ___  
+     /___\\ 
+     """
+ ]
+
+
 # List of secret words
 WORDS = ["python", "git", "github", "snowman", "meltdown"]
+
+#def display_game_state(mistakes, secret_word, guessed_letters):
+
 
 
 def get_random_word():
@@ -11,13 +45,15 @@ def get_random_word():
 
 def play_game():
     secret_word = get_random_word()
+    mistakes = 0
     print("Welcome to Snowman Meltdown!")
-    print("Secret word selected: " + secret_word)  # for testing, later remove this line
-
-    # TODO: Build your game loop here.
-    # For now, simply prompt the user once:
-    guess = input("Guess a letter: ").lower()
-    print("You guessed:", guess)
+    print(STAGES[mistakes])
+    for char in secret_word:
+        print("_ ", end="")
+    while mistakes < 3:
+        guessed_letter = input("\nGuess a letter: ").lower()
+        print("You guessed:", guessed_letter)
+        display_game_state(mistakes, secret_word, guessed_letter)
 
 
 if __name__ == "__main__":
