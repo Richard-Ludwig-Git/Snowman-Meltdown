@@ -19,6 +19,9 @@ def display_game_state(mistakes, secret_word, guessed_letters):
     if all_guessed == len(secret_word):
         print()
         print("\nYOU WON - AND SAVED THE SNOWMAN!")
+        return True
+    else:
+        return False
 
 
 def get_random_word():
@@ -32,6 +35,7 @@ def play_game():
         secret_word = get_random_word()
         guessed_letters = []
         mistakes = 0
+        game_won = False
         print("Welcome to Snowman Meltdown!")
         print(STAGES[0])
         for char in secret_word:
@@ -46,11 +50,18 @@ def play_game():
                 guessed_letters.append(guess)
             elif guess not in secret_word:
                 mistakes += 1
-            display_game_state(mistakes, secret_word, guessed_letters)
+            game_won = display_game_state(mistakes, secret_word, guessed_letters)
         print("\nGAME OVER\n")
         replay = input("Play another Round?(y/n): ")
-        if replay == "n":
+        if replay.lower == "n":
+            print("\nBYE\n")
             exit()
+        elif replay.lower == "y":
+            break
+
+
+
+
 
 
 if __name__ == "__main__":
