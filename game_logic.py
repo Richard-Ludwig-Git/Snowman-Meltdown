@@ -7,6 +7,7 @@ WORDS = ["python", "git", "github", "snowman", "meltdown"]
 
 
 def display_game_state(mistakes, secret_word, guessed_letters):
+    """Print Snowman Stage and display guessed letters"""
     print((f"\n"*6))
     print(STAGES[mistakes])
     all_guessed = 0
@@ -30,6 +31,7 @@ def get_random_word():
 
 
 def play_game():
+    """Gameplay logic"""
     playing = True
     while playing:
         secret_word = get_random_word()
@@ -52,16 +54,14 @@ def play_game():
                 mistakes += 1
             game_won = display_game_state(mistakes, secret_word, guessed_letters)
         print("\nGAME OVER\n")
-        replay = input("Play another Round?(y/n): ")
-        if replay.lower == "n":
-            print("\nBYE\n")
-            exit()
-        elif replay.lower == "y":
-            break
-
-
-
-
+        while True:
+            replay = input("Play another Round?(y/n): ")
+            print(replay.lower())
+            if replay == "n":
+                print("\nBYE\n")
+                exit()
+            elif replay == "y":
+                break
 
 
 if __name__ == "__main__":
